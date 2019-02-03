@@ -3,7 +3,7 @@
 #include <iostream>
 using namespace std;
 
-template<class T>
+template <class T>
 class SmartPtr
 {
 public:
@@ -70,7 +70,7 @@ SmartPtr<T>::SmartPtr(const SmartPtr<T> &orig)
 // 重载等号函数不同于复制构造函数，即等号左边的对象可能已经指向某块内存。
 // 这样，我们就得先判断左边对象指向的内存已经被引用的次数。如果次数为1，
 // 表明我们可以释放这块内存；反之则不释放，由其他对象来释放。
-template<class T>
+template <class T>
 SmartPtr<T>& SmartPtr<T>::operator=(const SmartPtr<T> &rhs)
 {
     // 《C++ primer》：“这个赋值操作符在减少左操作数的使用计数之前使rhs的使用计数加1，
@@ -78,8 +78,7 @@ SmartPtr<T>& SmartPtr<T>::operator=(const SmartPtr<T> &rhs)
     ++(*rhs.use_count);
 
     // 将左操作数对象的使用计数减1，若该对象的使用计数减至0，则删除该对象
-    if (--(*use_count) == 0)
-    {
+    if (--(*use_count) == 0) {
         delete ptr;
         delete use_count;
         cout << "Left side object is deleted!" << endl;
@@ -93,12 +92,12 @@ SmartPtr<T>& SmartPtr<T>::operator=(const SmartPtr<T> &rhs)
     return *this;
 }
 
-template<typename T>
+template <typename T>
 T& SmartPtr<T>::operator*() {
     return *ptr;
 }
 
-template<typename T>
+template <typename T>
 T* SmartPtr<T>::operator->() {
     return ptr;
 }

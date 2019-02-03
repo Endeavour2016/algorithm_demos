@@ -1,9 +1,9 @@
-/*************************************************************************
-    > File Name: mySort.cpp(dell workstation, b513, 2018-5-3)
-    > Author: ZLM
-    > Mail: Bruce71@live.com 
-    > Created Time: 2019年01月31日 星期四 10时09分38秒
- ************************************************************************/
+/*******************************************************************
+> File Name: mySortRevised.cpp(dell workstation,b513,2018-5-3)
+> Author: ZLM
+> Mail: xxxxx@live.com 
+> Created Time: 2019年01月31日 星期四 10时09分38秒
+********************************************************************/
 #include <iostream>
 #include <queue>
 #include <vector>
@@ -14,8 +14,7 @@ using namespace std;
  * @param arr
  * @param len
  */
-void insertSort(int arr[], int len)
-{
+void insertSort(int arr[], int len) {
     for (int i = 1; i < len; i++) {
         int tmp = arr[i];
         int j = i-1;
@@ -32,8 +31,7 @@ void insertSort(int arr[], int len)
  * 2-bubble sort
  * time and space complexity: O(n2), O(1)
  */
-void bubbleSort(vector<int> &num)
-{
+void bubbleSort(vector<int> &num) {
     int len = num.size();
     for (int i = len-1; i>= 1; i--) {
         for(int j = 0; j < i; j++) {
@@ -49,8 +47,7 @@ void bubbleSort(vector<int> &num)
 /**
  * 2-bubble sort improve
  */
-void bubbleSortImprove(vector<int> &nums)
-{
+void bubbleSortImprove(vector<int> &nums) {
     int len = num.size();
     bool flag = true; 
     for (int i = len - 1; i >= 1; i--) {
@@ -73,8 +70,7 @@ void bubbleSortImprove(vector<int> &nums)
  * 3-select sort
  * @param num
  */
-void SelectSort(vector<int> &num)
-{
+void SelectSort(vector<int> &num) {
     int len = num.size();
     int i,j;
     for (i = 0; i < len-1; i++) {
@@ -83,7 +79,6 @@ void SelectSort(vector<int> &num)
             if (num[j] < num[min])
                 min = j;
         }
-        
         if (min != i) {
             int tmp = num[i];
             num[i] = num[min];
@@ -93,8 +88,7 @@ void SelectSort(vector<int> &num)
 }
 
 // swap arr[i] and arr[j]
-void Swap(int arr[], int i, int j)
-{
+void Swap(int arr[], int i, int j) {
     int tmp = arr[i];
     arr[i] = arr[j];
     arr[j] = tmp;
@@ -106,8 +100,7 @@ void Swap(int arr[], int i, int j)
  * @param arr
  * @param s
  */
-void heapify(int arr[], int s, int size)
-{
+void heapify(int arr[], int s, int size) {
     int left = 2*s+1;
     int right = 2*s+2;
     int max = s;
@@ -133,12 +126,10 @@ void heapify(int arr[], int s, int size)
  * @param s
  * @param len
  */
-void HeapifyWithLoop(int arr[], int s, int len)
-{
+void HeapifyWithLoop(int arr[], int s, int len) {
     int left = 2*s+1;
     int root = arr[s];
-    while (left <= len-1)
-    {
+    while (left <= len-1) {
         if ((left+1) < len && arr[left] < arr[left+1])
             left++;
         if (arr[left] <= root) {
@@ -160,8 +151,7 @@ void HeapifyWithLoop(int arr[], int s, int len)
  * @param arr
  * @param len
  */
-void HeapSort(int arr[], int len)
-{
+void HeapSort(int arr[], int len) {
     if (len <= 1)
         return;
 
@@ -171,8 +161,7 @@ void HeapSort(int arr[], int len)
     }
 
     //2. swap the max element, push it into the tail of arr[]
-    for (int j = len-1; j > 0; j--)
-    {
+    for (int j = len-1; j > 0; j--) {
         Swap(arr, 0, j);
         heapify(arr, 0, j);
     }
@@ -180,8 +169,7 @@ void HeapSort(int arr[], int len)
 }
 
 //------------------ 5. shell sort --------------------
-void ShellSort(int arr[], int len)
-{
+void ShellSort(int arr[], int len) {
     if (len <= 1) {
         return;
     }
@@ -205,16 +193,12 @@ void ShellSort(int arr[], int len)
 
 }
 
-//------------------6.merge sort--------------------
-// 时间复杂度：O(nlogn), 空间复杂度：O(nlogn)
+//------------------6.merge sort-------------------- 
 /**
  * merge left and right into vec
- * @param vec
- * @param left
- * @param right
+ * 时间复杂度：O(nlogn), 空间复杂度：O(nlogn)
  */
-void merge(vector<int> &vec, vector<int> &left, vector<int> &right)
-{
+void merge(vector<int> &vec, vector<int> &left, vector<int> &right) {
     int len1 = left.size();
     int len2 = right.size();
 
@@ -233,13 +217,11 @@ void merge(vector<int> &vec, vector<int> &left, vector<int> &right)
         vec[k++] = right[j++];
 }
 
-
 /**
  * Merge sort
  * @param vec
  */
-void MergeSort(vector<int> &vec)
-{
+void MergeSort(vector<int> &vec) {
     if (vec.size() <= 1)
         return;
     int len = vec.size();
@@ -256,8 +238,7 @@ void MergeSort(vector<int> &vec)
 
 //------------------7.quicksort ---------------------
 // 时间复杂度：O(nlogn), 空间复杂度：O(logn)
-int partition(int arr[], int low, int high)
-{
+int partition(int arr[], int low, int high) {
     int pivot = arr[low];
 
     while (low < high) {
@@ -281,8 +262,7 @@ int partition(int arr[], int low, int high)
  * @param arr
  * @param len
  */
-void QuickSort(int arr[], int left, int right)
-{
+void QuickSort(int arr[], int left, int right) {
     if (left < right) {
 
         // partition
@@ -295,18 +275,15 @@ void QuickSort(int arr[], int left, int right)
 }
 
 //---------------------8.RadixSort-----------------
-int maxDigits(vector<int> &num)
-{
+int maxDigits(vector<int> &num) {
     int max = 1;
     for (int i = 0; i < num.size(); i++) {
         int count = 1;
         int tmp = num[i]/10;
-        while (tmp != 0)
-        {
+        while (tmp != 0) {
             count++;
             tmp /= 10;
         }
-
         if (count > max)
             max = count;
     }
@@ -317,8 +294,7 @@ int maxDigits(vector<int> &num)
  * 8-radix sort
  * @param num
  */
-void RadixSort(vector<int> &num)
-{
+void RadixSort(vector<int> &num) {
     int len = num.size();
     if (len <= 1)
         return;
@@ -339,7 +315,6 @@ void RadixSort(vector<int> &num)
         // 收集数据
         int k = 0;
         for (int r = 0; r < radix; r++) {
-
             while (!bucket[r].empty()) {
                 int tmp = bucket[r].front();
                 num[k++] = tmp;
@@ -350,9 +325,8 @@ void RadixSort(vector<int> &num)
 
 }
 
-//--------------------- main function -----------------------
-int main() {
-
+int main() 
+{
     cout << "Test HeapSort!\n";
     int arr[] = {1,16,2, 18, 7, 28, 40, 11};
     int len = sizeof(arr) / sizeof(int);
@@ -393,7 +367,6 @@ int main() {
     for (auto v : arr3)
         cout << v << " ";
     cout << endl;
-
 
     //--------------------------------------------
     cout << "Test Radix sort!\n";
