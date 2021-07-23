@@ -1,3 +1,3 @@
-# algorithmDemos
-This project mainly contains the implementaion of basic sort algorithms and data structures.
+# algorithm practices
+implementaion of basic data structures and algorithm.
 
