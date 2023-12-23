@@ -1,4 +1,11 @@
-/** 2018-7-27 
+/*
+ * @Author: zlm 
+ * @Date: 2018-7-27 
+ * @Last Modified by: zlm
+ * @Last Modified time: 2021-10-24 00:28:19
+ */
+
+/**
  * Kruskal 算法
  * 算法思想： 按照权值从小到大的顺序选择n-1条边，并保证这n-1条边不构成回路。 
  * 算法过程：

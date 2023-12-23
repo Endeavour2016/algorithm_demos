@@ -105,9 +105,7 @@ void PostOrderTraverse(TreeNode *root) {
 	cout << endl;
 }
 
-int main(int argc, char * argv[])
-{
-	/* code */
+int main(int argc, char * argv[]) {
 	TreeNode *root = new TreeNode(10);
 	int d = 0;
 	for (int i = 1; i <= 4; i++) {

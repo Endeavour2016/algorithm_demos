@@ -28,8 +28,8 @@ void creatBinaryTree(Node* &root) {
         return;
     }
     root = new Node(x);
-    creatBiTree(root->left);
-    creatBiTree(root->right);
+    creatBinaryTree(root->left);
+    creatBinaryTree(root->right);
 }
 
 // visit node T
@@ -68,45 +68,53 @@ void postOrder(Node *root) {
 }
 
 
-// Traverse non-recursively
-// 先序遍历: stack
+
+/**非递归方式遍历**/
+// 先序遍历
+// 1、访问根节点
+// 2、访问左子节点
+// 3、访问右子节点
+// 为什么用栈呢？先访问的左子节点，访问完之后需要能找到右子节点的指针，然后才能访问右子节点
+// 因此需要提前存放右子节点指针，最后再取出其指针，满足“先进后出的特性”
+
 void preOrderF(Node *root) {
-    if (root == nullptr)
+    if (root == nullptr) {
         return;
+    }
 
     stack<Node *> s;
     s.push(root); // 先存放根节点
-
     Node *p = nullptr;
 
     while (!s.empty()) {
         p = s.top();
         s.pop();
-        
-        // visit root first
         cout << p->val << " ";
-        
-        if (p->right)
+        if (p->right != nullptr)
             s.push(p->right);
-        if (p->left)
+        if (p->left != nullptr)
             s.push(p->left);
     }
 }
 
 // 中序遍历
-void inOrderF(Node *root)
-{
-    if (root == nullptr)
+// 先遍历左子树，再遍历根节点，最后遍历右子树
+// 1、从树的root开始，先找到左子树最底层的叶子节点(左子节点)
+// 2、访问左子节点->访问当前根节点->访问右子树(这个过程跟步骤1一样)
+// 3、为了保证访问完左子节点之后，能够找到其根节点，步骤1在遍历左子树的过程中，需要按照
+// 遍历的顺序将左子树的根节点入栈，这样出栈时即可保证按中序来访问根节点
+void inOrderF(Node *root) {
+    if (root == nullptr) {
         return;
-    stack<Node *> s;
-    Node *p = root;
+    }
 
-    while (p || !s.empty()) {
+    stack<Node*> s;
+    Node* p = root;
+    while (p != nullptr || !s.empty()) {
         if (p != nullptr) {
             s.push(p);
             p = p->left;
-        }
-        else {
+        } else {
             p = s.top();
             s.pop();
             cout << p->val << " ";
@@ -129,8 +137,7 @@ void postOrderF(Node *root)
     
     Node *p = nullptr;
 
-    while (!s.empty())
-    {
+    while (!s.empty()) {
         p = s.top();
         s.pop();
         rs.insert(rs.begin(), p->val);
