@@ -1,7 +1,6 @@
 #include <iostream>
 #include <string>
 #include <stdlib.h>
-#include <hash_map>
 using namespace std;
 
 void getNext(string p, int *next) {

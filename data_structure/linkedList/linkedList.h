@@ -10,10 +10,10 @@ using namespace std;
  * @date 2017/12/8
  */
 
-typedef struct Node{
+typedef struct Node {
 	int data;
 	Node *next;
-}ListNode;
+} ListNode;
 
 // 链表类，包含有关链表操作的成员函数
 // 不带头结点

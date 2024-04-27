@@ -7,13 +7,13 @@
 typedef struct Node {
 	int data;
 	struct Node *next;
-}Qnode;
+} Qnode;
 
 // 队列首尾指针节点的定义（队列的结构，也可以添加长度等信息）
 typedef struct Queue {
 	Qnode *front;
 	Qnode *rear;
-}LinkQueue;
+} LinkQueue;
 
 // 链队的操作本质上是单链表的操作，只不过限定了操作的位置
 

@@ -1,4 +1,4 @@
-// 自己实现的智能指针
+// 智能指针简单实现
 // 2018-10-2
 #include <iostream>
 using namespace std;
@@ -25,8 +25,7 @@ SmartPtr<T>::SmartPtr(T *p) : ptr(p)
 {
     try {
         use_count = new int(1);
-    }
-    catch (bad_alloc) {
+    } catch (bad_alloc) {
         delete ptr;
         ptr = nullptr;
         use_count = nullptr;
@@ -39,11 +38,9 @@ SmartPtr<T>::SmartPtr(T *p) : ptr(p)
 
 // 析构
 template<class T>
-SmartPtr<T>::~SmartPtr()
-{
+SmartPtr<T>::~SmartPtr() {
     // 只在最后一个指向对象的shared_ptr销毁时，才释放对象的内存
-    if (--(*use_count) == 0)
-    {
+    if (--(*use_count) == 0) {
         delete ptr; // 销毁ptr指向的内存
         delete use_count;
 
@@ -56,8 +53,7 @@ SmartPtr<T>::~SmartPtr()
 
 // 拷贝构造
 template<class T>
-SmartPtr<T>::SmartPtr(const SmartPtr<T> &orig)
-{
+SmartPtr<T>::SmartPtr(const SmartPtr<T> &orig) {
     if (this != &orig) { // 相同的元素没必要进行拷贝初始化
         ptr = orig.ptr;
         use_count = orig.use_count;
@@ -71,8 +67,7 @@ SmartPtr<T>::SmartPtr(const SmartPtr<T> &orig)
 // 这样，我们就得先判断左边对象指向的内存已经被引用的次数。如果次数为1，
 // 表明我们可以释放这块内存；反之则不释放，由其他对象来释放。
 template <class T>
-SmartPtr<T>& SmartPtr<T>::operator=(const SmartPtr<T> &rhs)
-{
+SmartPtr<T>& SmartPtr<T>::operator=(const SmartPtr<T> &rhs) {
     // 《C++ primer》：“这个赋值操作符在减少左操作数的使用计数之前使rhs的使用计数加1，
     // 从而防止自身赋值”而导致的提早释放内存
     ++(*rhs.use_count);

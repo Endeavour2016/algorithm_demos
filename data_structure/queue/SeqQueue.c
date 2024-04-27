@@ -1,4 +1,4 @@
-#include "queue.h"
+#include "./SeqQueue.h"
 /**
  * 顺序队列的特点：非空时，rear 指向队尾的下一个元素，front 指向队首元素
  */

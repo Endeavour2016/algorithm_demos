@@ -9,7 +9,7 @@ typedef struct Queue {
 	int arr[MAXSIZE];
 	int front;
 	int rear;
-}SeqQueue;
+} SeqQueue;
 
 // 1. 初始化操作
 SeqQueue *initQueue();

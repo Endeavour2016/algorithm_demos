@@ -34,10 +34,9 @@ public:
 
     // 查找指定的 key
     int get(int key) {
-        if (m_map.find(key) == m_map.end()) // cache中没有key，直接返回
+        if (m_map.find(key) == m_map.end()) {  // cache中没有key，直接返回
             return -1;
-        
-        else {
+        } else {
             //将元素放入链表头部
             //splice(begin(), src_list&, iterator);
             m_list.splice(m_list.begin(), m_list, m_map[key]); // 把 m_list 中的 m_map[key]
@@ -52,24 +51,18 @@ public:
     void put(int key, int value) {
         assert(m_capacity > 0);
         if (m_map.find(key) != m_map.end()) {
-            
             // 如果已经存在key, 则更新 value
             m_map[key]->value = value;
             
             //将元素放入链表头部
             m_list.splice(m_list.begin(), m_list, m_map[key]);
             m_map[key] = m_list.begin();
-        }
-                // cache容量已满
-        else if (m_capacity == m_list.size()) { 
-            m_map.erase(m_list.back().key); // 删除链表尾部的key
+        } else if (m_capacity == m_list.size()) {
+            m_map.erase(m_list.back().key);
             m_list.pop_back();
-            // 在链表首部插入元素
             m_list.push_front(Element(key, value));
             m_map[key] = m_list.begin();
-        }
-        // 容量未满，直接插入到首部
-        else { 
+        } else { 
             m_list.push_front(Element(key, value));
             m_map[key] = m_list.begin();
         }
